@@ -21,9 +21,9 @@
 {% endif %}
 {% endfor %}
 
-<form action="" method="post">
+<form action="" id="form" method="post">
 {% csrf_token %}
-    <input type="text" name="message" placeholder="Type your Message here.........">
+    <input id="data" type="text" name="message" placeholder="Type your Message here........." required>
     <input type="submit" value="Send">
 </form>
 
@@ -31,8 +31,10 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
     // console.log(window.location)
-    var loc = window.location
-    var wsStart = 'ws://'
+    var formData = $('#form');
+    var loc = window.location;
+    var wsStart = 'ws://';
+    var msgInput = $('#data');
 
     if (loc.protocol == 'https:'){
          wsStart = 'wss://'
@@ -46,6 +48,16 @@
     }
     socket.onopen = function(e){
             console.log("open ", e);
+            formData.submit(function(event){
+                    event.preventDefault()
+                    var msgText = msgInput.val();
+                    var finalData = {"message": msgText};
+                    socket.send(JSON.stringify(finalData));
+                //     msgInput.val('');
+                    formData[0].reset();
+                
+                   
+            })
     }
     socket.onerror = function(e){
             console.log("Error ", e);
