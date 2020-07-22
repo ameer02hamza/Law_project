@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  
+<li>
+    <a href="javascript:;" class="ripple" data-toggle="dropdown">
+        {% if noti.count != 0 %}
+        <span class="label bg-danger pull-right" id="ndata">{{noti.count}}</span>
+      <i class="icon-bell"></i>
+      {%else%}
+      <i class="icon-bell"></i>
+      {% endif %}
+    </a>
+    <ul class="dropdown-menu notifications" style="overflow: scroll; height:400px; width:auto;">
+      <li class="notifications-header">
+        <p class="text-muted small" id="ydata">You have {{noti.count}} new messages</p>   
+      </li>
+      {% for i in law %}
+      {% if user.id == i.usr.id and i.usrtype == False %}
+      <li>
+        <ul class="notifications-list" id="mtime">
+          {% for n in noti %}
+          <li>
+            <a href="{% url 'Appointment:notiend' n.id %}">
+              <div class="notification-icon">
+                <div class="circle-icon bg-success text-white">
+                  <i class="icon-bulb"></i>
+                </div>
+              </div>
+              <span class="notification-message" id="msg">{{n.msg}} </span>
+              <span class="time" id="time">{{n.ntime}}</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% elif user.id == i.usr.id and i.usrtype == True%}
+      <li>
+        <ul class="notifications-list" id="mtime">
+          {% for n in noti %}
+          <li >
+            <a href="{% url 'Appointment:arequests'%}">
+              <div class="notification-icon">
+                <div class="circle-icon bg-success text-white">
+                  <i class="icon-bulb"></i>
+                </div>
+              </div>
+              <span class="notification-message" id="msg">{{n.msg}}</span>
+              <span class="time" id="time"></span>
+          
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endif %}
+      {% endfor %}     
+    </ul>
+  </li>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" >
+  </script>
+  <script>
+      $(document).ready(function(){
+          setInterval(function(){
+              $.ajax({
+                  type:'GET',
+                  url:"{% url 'Appointment:notiajax' %}",
+                  success:function(response){
+                    $('#mtime').empty();
+                    $('#ndata').empty();
+                    var cnt = response.noti.length;
+                    if(cnt !=0){
+                      $('#ndata').append(cnt);
+                    }
+                    for (var key in response.noti){
+                      
+                      var time = response.noti[key].ntime;
+                      console.log(time);
+                      var msg = response.noti[key].msg;
+                      var id = response.noti[key].id 
+                      console.log(response.noti[key].id, "noti id ")
+                      var data ="<li><a href='notistatus/"+id+"'><div class='notification-icon'><div class='circle-icon bg-success text-white'><i class='icon-bulb'></i></div></div><span class='notification-message' id='msg'>"+msg+
+                      "</span><span class='time' id='time'>" +time+ 
+                      "</span></a></li>";
+                      $('#mtime').append(data);                    
+                  }
+                
+                  },
+                  error:function(response){
+                    alert("data is not loaded");
+                  }
+              });
+          }, 1000);
+      });
+  </script>
+</body>
+</html>

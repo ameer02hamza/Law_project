@@ -1,0 +1,8 @@
+{% block user %} {{user.first_name}} {{user.last_name}} {% endblock %}
+{% block profile %}
+{% for i in law %}
+{% if user.id == i.usr.id %}
+<img src="/media/{{i.profile_picture}}" class="header-avatar img-circle" alt="user" title="user">
+{% endif %}
+{% endfor %}
+{% endblock %}

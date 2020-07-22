@@ -1,0 +1,42 @@
+{% extends "Master/Master.html"  %}
+{% load static %}
+{% block title %} {{law.usr.first_name}} {% endblock%}
+{% block userprof %}
+{%include "Master/userprof.html" %}
+{% endblock %}
+{% block notify %}
+{% include "Master/notification.html" %}
+
+{% endblock %}
+{% block slisting %}
+        <div class="main-panel">
+            <div class="row">
+                <div class="col-md-5">
+                    <!-- Single Listings Slides -->
+                    <img src="/media/{{lawyer.profile_picture}}" alt="">
+                    {% include 'Master/trate.html'%}
+                </div> 
+                             
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="listings-content">
+                        <h5>{{lawyer.usr.first_name}} {{lawyer.usr.last_name}} {{lawyer.usr.id}}</h5>
+                        <p class="location"><img src="{% static 'img/icons/location.png' %}" alt="">{{ lawyer.address}}</p>
+                        <strong><p>Expertise in {{lawyer.speciality}}</p></strong>
+                        <strong><p>Contact No {{lawyer.pno}}</p></strong>
+                        <p> {{lawyer.description}}</p>
+                        <!-- Meta -->
+                        <!-- Core Features -->
+                        <!-- Listings Btn Groups -->
+                        <div class="listings-btn-groups">
+                            <a href="{% url 'Appointment:Appointform' lawyer.usr.id %}" class="btn south-btn">Get Appointment</a>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        {% include 'Master/rating.html'%}
+        
+    {% endblock %}

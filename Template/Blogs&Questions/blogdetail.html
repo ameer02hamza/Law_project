@@ -1,0 +1,36 @@
+{% extends "Master/Master.html"  %}
+{% load static %}
+{% block userprof %}
+{%include "Master/userprof.html" %}
+{% endblock %}
+{% block notify %}
+{% include "Master/notification.html" %}
+
+{% endblock %}
+{% block blogdetail %}
+   
+            <div class="row">
+                <div >
+                    <div class="card bg-white">
+                        <img class="card-img-top img-responsive" src="/media/{{blog.bpic}}" alt="Card image">
+                        <div class="card-block">
+                          <h4 class="card-title">{{blog.btitle}}</h4>
+                          <p class="card-text">{{blog.btext}}</p>
+                          <div class="post-meta">
+                            <p>By <a href="{%url 'lawyer:SLawyerlist' blog.postedby.id %}"> {{blog.postedby.first_name}}  {{blog.postedby.last_name}}</a></p>           
+                        </div>
+                          <p class="card-text"><small class="text-muted">{{blog.bdate}} at {{blog.btime}}</small>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="fb-like" data-href="http://127.0.0.1:8000/blog/sblog/{{blog.id}}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
+                </div>
+            </div>
+      
+    <div class="comments-area">
+                <div class="comment-wrapper d-flex">
+                    <div class="fb-comments" data-href="http://127.0.0.1:8000/blog/sblog/{{blog.id}}" data-numposts="10" data-width=""></div>
+                </div>
+       
+    </div>
+{% endblock %}

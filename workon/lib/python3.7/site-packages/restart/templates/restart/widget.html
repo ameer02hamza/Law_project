@@ -1,0 +1,17 @@
+{% load cache %}
+{% load restart_tags %}
+<link href="{{ STATIC_URL }}admin/css/restart.css" rel="stylesheet" type="text/css" />
+<div class="inner" style="display: none;">
+    <header>
+        <h1>Server status</h1>
+    </header>
+    <section>
+        {% if errors %}
+            {% for error in errors %}<p>{{ error|safe }}</p>{% endfor %}
+        {% else %}
+            <p><strong>Last Restarted:</strong> <span id="last_modified">{{ last_modified|naturaltime }}</span></p>
+            <a id="restart_link" href="#">restart server</a>
+        {% endif %}
+    </section>
+</div>
+<a id="toggle" href="#"><i class="icon-chevron-up"></i></a>

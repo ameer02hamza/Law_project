@@ -1,0 +1,56 @@
+{% extends "Master/Master.html"  %}
+{% block title %} Appointment Confirmation {% endblock%}
+{% block userprof %}
+{%include "Master/userprof.html" %}
+{% endblock %}
+{% block notify %}
+{% include "Master/notification.html" %}
+
+{% endblock %}
+{% block AppointmentTable %} 
+<div>
+   
+  <div>
+    <div class="page-title">
+      <div class="title">Appointments</div>
+    </div>
+    <div class="card bg-white">
+<form method="POST">
+  {% csrf_token %}
+        <table class=" datatable align-middle bordered">
+          <thead>
+            <tr>
+              <th>Client Number</th>
+              <th>Name</th>
+              <th>Phone Number</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Edit</th>
+              <th>Confirm</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in Appoint %}
+            <tr>
+              <td>{{i.id}}</td>
+              <td>{{i.Name}}</td>
+              <td>{{i.Phone_no}}</td>
+              <td>{{i.adate}}</td>
+              <td>{{i.atime}}</td>
+              <td><a href="javascript:;" class="edit">Edit</a>
+              </td>
+              <td><a href="{% url 'Appointment:confirm' i.id %}">Confirm</a>
+              </td>
+              <td><a href="{% url 'Appointment:reject' i.id %}">Reject</a>
+              </td>
+            </tr>
+            {% endfor %}
+           
+          </tbody>
+        </table>
+      </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

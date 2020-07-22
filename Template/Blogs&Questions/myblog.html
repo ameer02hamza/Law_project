@@ -1,0 +1,52 @@
+{% extends "Master/Master.html"  %}
+{% block userprof %}
+{%include "Master/userprof.html" %}
+{% endblock %}
+{% block notify %}
+{% include "Master/notification.html" %}
+
+{% endblock %}
+{% load static %}
+
+   {% block bloglist %}
+   <section class="south-blog-area section-padding-100">
+        <div class="container">
+            {% for b in blog%}
+            <div class="card bg-white">
+                <img class="card-img-top img-responsive" src="/media/{{b.bpic}}" alt="Card image">
+                <div class="post-meta">
+                    <p>By <a href="{%url 'lawyer:SLawyerlist' b.postedby.id %}"> {{b.postedby.first_name}}  {{b.postedby.last_name}}</a> | in <a href="#">Uncategorized</a> </p>
+                    <div class="fb-like" data-href="http://127.0.0.1:8000/blog/sblog/{{b.id}}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
+
+                </div>
+                <div class="card-block">
+                  <h4 class="card-title">{{b.btitle}}</h4>
+                  <p class="card-text">{{b.btext |truncatechars:200}}</p>
+                  <a href="{%url 'Blog:sblog' b.id%}"> Read More</a>
+                  <p class="card-text"><small class="text-muted">Last updated {{b.bdate}} at {{b.btime}}</small>
+                  </p>
+                </div>
+              </div>
+              {% endfor %}
+
+              <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% if blog.has_previous %}
+                    <li >
+                        <a  href="?page={{ blog.previous_page_number }}">←</a> 
+                        <a  href="?page={{ blog.previous_page_number }}">{{ blog.previous_page_number }}</a></li>  
+                    {% endif %}
+                    <li class="active" ><a href="#">{{ blog.number }}</a></li>
+                    {% if blog.has_next %}
+                    <li >                       
+                        <a  href="?page={{ blog.next_page_number }}">{{ blog.next_page_number }}</a>  
+                        <a  href="?page={{ blog.next_page_number }}">→</a>                 
+                    </li>
+                    {% endif %} 
+
+
+                </ul>
+            </nav>
+        </div>
+    </section>
+    {% endblock%}

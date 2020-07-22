@@ -1,0 +1,60 @@
+{% extends "Master/Master.html"  %}
+{% block userprof %}
+{%include "Master/userprof.html" %}
+{% endblock %}
+{% block notify %}
+{% include "Master/notification.html" %}
+{% endblock %}
+{% block Appointmentform %}
+
+
+  <div class="app signup usersession">
+    <div class="session-wrapper">
+      <div class="page-height-o row-equal align-middle">
+        <div class="column">
+          <div class="card bg-white no-border">
+            <div class="card-block">
+              <form role="form" class="form-layout" method="post">
+
+              {% csrf_token %}
+                <div class="text-center m-b">
+                  <h4 class="text-uppercase">Get an Appointment</h4>
+                  
+                </div>
+                <div class="form-inputs">
+                
+                    <label class="text-uppercase">Client Name</label>
+                    <input type="text" name="fname" value="{{user.first_name}} {{user.last_name}}" class="form-control input-lg first" placeholder="Full Name" required>
+                  <label class="text-uppercase">Your current email address</label>
+                  <input type="email" class="form-control input-lg" value="{{user.email}}" placeholder="Email address" name="email" required>
+                  <label class="text-uppercase">Phone Number</label>
+              
+                    <input type="tel" class="form-control" placeholder="+923470103026"  name="pno" required>
+                
+                  <label class="text-uppercase">Lawyer Name</label>
+                  <input type="text" class="form-control" value="{{law.first_name}} {{law.last_name}}" name="lawname" readonly>
+                  <label class="text-uppercase">Case Details</label>
+                  <textarea name="casedet" class="form-control" id="" placeholder="Your case description should have 255 characters minimun "  rows="3"></textarea>
+                  <label class="text-uppercase">Appointment Date</label>
+                  <input type="date" class="form-control" name="adate" required>
+                  <label class="text-uppercase">Appointment Time</label>
+                  <input type="time" class="form-control input-lg" name="atime"  required>
+                </div>
+                <button class="btn btn-primary btn-block btn-lg m-b" type="submit"> Get Appointment</button>
+               
+           
+              
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- bottom footer -->
+  
+    <!-- /bottom footer -->
+  </div>
+<script>
+ 
+</script>
+{% endblock %}

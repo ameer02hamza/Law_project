@@ -1,0 +1,151 @@
+<style>
+ 
+    .ratin { 
+      border: none;
+      float: left;
+    }
+    
+    .ratin > input { display: none; } 
+    .ratin > label:before { 
+      margin: 5px;
+      font-size: 1.25em;
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f005";
+    }
+    
+    .ratin > .half:before { 
+      content: "\f089";
+      position: absolute;
+    }
+    
+    .ratin > label { 
+      color: #ddd; 
+     float: right; 
+    }
+    
+    /***** CSS Magic to Highlight Stars on Hover *****/
+    
+    .ratin > input:checked ~ label, /* show gold star when clicked */
+    .ratin:not(:checked) > label:hover, /* hover current star */
+    .ratin:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+    
+    .ratin > input:checked + label:hover, /* hover current star when changing rating */
+    .ratin > input:checked ~ label:hover,
+    .ratin > label:hover ~ input:checked ~ label, /* lighten current selection */
+    .ratin > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+      </style>
+<p>{{rating}}</p>
+                    <fieldset class="ratin">
+                        {% if rating > 4.5 %}
+                        <input type="radio" name="rating" value="5" checked disabled='disabled'/><label class = "full"  title="Awesome - 5 stars"></label>
+                        <input type="radio" name="rating" value="4 and a half" /><label class="half" for="" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio"  name="rating" value="4"  /><label class = "full"  title="Pretty good - 4 stars"></label>
+                        <input type="radio"  name="rating" value="3 and a half" /><label class="half" for="" title="Meh - 3.5 stars"></label>
+                        <input type="radio"  name="rating" value="3"  /><label class = "full"  title="Meh - 3 stars"></label>
+                        <input type="radio"  name="rating" value="2 and a half"/><label class="half" for="" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio"  name="rating" value="2"/><label class = "full"  title="Kinda bad - 2 stars"></label>
+                        <input type="radio"  name="rating" value="1 and a half" /><label class="half" for="" title="Meh - 1.5 stars"></label>
+                        <input type="radio" name="rating" value="1" /><label class = "full"  title="Sucks big time - 1 star"></label>
+                        <input type="radio"  name="rating" value="half"  /><label class="half" for="" title="Sucks big time - 0.5 stars"></label>                    
+                        {% elif rating > 4 %}                        
+                         <input type="radio" name="rating" value="5" /><label class = "full"  title="Awesome - 5 stars"></label>
+                         <input type="radio" name="rating" value="4 and a half" checked disabled='disabled' /><label class="half" for="" title="Pretty good - 4.5 stars"></label>
+                         <input type="radio"  name="rating" value="4"  /><label class = "full"  title="Pretty good - 4 stars"></label>
+                         <input type="radio"  name="rating" value="3 and a half" /><label class="half" for="" title="Meh - 3.5 stars"></label>
+                         <input type="radio"  name="rating" value="3"  /><label class = "full"  title="Meh - 3 stars"></label>
+                         <input type="radio"  name="rating" value="2 and a half"/><label class="half" for="" title="Kinda bad - 2.5 stars"></label>
+                         <input type="radio"  name="rating" value="2"/><label class = "full"  title="Kinda bad - 2 stars"></label>
+                         <input type="radio"  name="rating" value="1 and a half" /><label class="half" for="" title="Meh - 1.5 stars"></label>
+                         <input type="radio" name="rating" value="1" /><label class = "full"  title="Sucks big time - 1 star"></label>
+                         <input type="radio"  name="rating" value="half"  /><label class="half" for="" title="Sucks big time - 0.5 stars"></label>
+                        {% elif rating > 3.5 %}
+                        <input type="radio" name="rating" value="5" /><label class = "full"  title="Awesome - 5 stars"></label>
+                        <input type="radio" name="rating" value="4 and a half" /><label class="half" for="" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio"  name="rating" value="4" checked disabled='disabled' /><label class = "full"  title="Pretty good - 4 stars"></label>
+                        <input type="radio"  name="rating" value="3 and a half" /><label class="half" for="" title="Meh - 3.5 stars"></label>
+                        <input type="radio"  name="rating" value="3"  /><label class = "full"  title="Meh - 3 stars"></label>
+                        <input type="radio"  name="rating" value="2 and a half"/><label class="half" for="" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio"  name="rating" value="2"/><label class = "full"  title="Kinda bad - 2 stars"></label>
+                        <input type="radio"  name="rating" value="1 and a half" /><label class="half" for="" title="Meh - 1.5 stars"></label>
+                        <input type="radio" name="rating" value="1" /><label class = "full"  title="Sucks big time - 1 star"></label>
+                        <input type="radio"  name="rating" value="half"  /><label class="half" for="" title="Sucks big time - 0.5 stars"></label>                         
+                        {% elif rating > 3 %}
+                        <input type="radio" name="rating" value="5" /><label class = "full"  title="Awesome - 5 stars"></label>
+                        <input type="radio" name="rating" value="4 and a half" /><label class="half" for="" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio"  name="rating" value="4"  /><label class = "full"  title="Pretty good - 4 stars"></label>
+                        <input type="radio"  name="rating" value="3 and a half" checked disabled='disabled'/><label class="half" for="" title="Meh - 3.5 stars"></label>
+                        <input type="radio"  name="rating" value="3"  /><label class = "full"  title="Meh - 3 stars"></label>
+                        <input type="radio"  name="rating" value="2 and a half"/><label class="half" for="" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio"  name="rating" value="2"/><label class = "full"  title="Kinda bad - 2 stars"></label>
+                        <input type="radio"  name="rating" value="1 and a half" /><label class="half" for="" title="Meh - 1.5 stars"></label>
+                        <input type="radio" name="rating" value="1" /><label class = "full"  title="Sucks big time - 1 star"></label>
+                        <input type="radio"  name="rating" value="half"  /><label class="half" for="" title="Sucks big time - 0.5 stars"></label>
+                        {% elif rating > 2.5%}
+                        <input type="radio" name="rating" value="5" /><label class = "full"  title="Awesome - 5 stars"></label>
+                        <input type="radio" name="rating" value="4 and a half" /><label class="half" for="" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio"  name="rating" value="4"  /><label class = "full"  title="Pretty good - 4 stars"></label>
+                        <input type="radio"  name="rating" value="3 and a half" /><label class="half" for="" title="Meh - 3.5 stars"></label>
+                        <input type="radio"  name="rating" value="3" checked disabled='disabled' /><label class = "full"  title="Meh - 3 stars"></label>
+                        <input type="radio"  name="rating" value="2 and a half"/><label class="half" for="" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio"  name="rating" value="2"/><label class = "full"  title="Kinda bad - 2 stars"></label>
+                        <input type="radio"  name="rating" value="1 and a half" /><label class="half" for="" title="Meh - 1.5 stars"></label>
+                        <input type="radio" name="rating" value="1" /><label class = "full"  title="Sucks big time - 1 star"></label>
+                        <input type="radio"  name="rating" value="half"  /><label class="half" for="" title="Sucks big time - 0.5 stars"></label>
+                         {% elif rating > 2 %}
+                         <input type="radio" name="rating" value="5" /><label class = "full"  title="Awesome - 5 stars"></label>
+                         <input type="radio" name="rating" value="4 and a half" /><label class="half" for="" title="Pretty good - 4.5 stars"></label>
+                         <input type="radio"  name="rating" value="4"  /><label class = "full"  title="Pretty good - 4 stars"></label>
+                         <input type="radio"  name="rating" value="3 and a half" /><label class="half" for="" title="Meh - 3.5 stars"></label>
+                         <input type="radio"  name="rating" value="3"  /><label class = "full"  title="Meh - 3 stars"></label>
+                         <input type="radio"  name="rating" value="2 and a half" checked disabled='disabled'/><label class="half" for="" title="Kinda bad - 2.5 stars"></label>
+                         <input type="radio"  name="rating" value="2"/><label class = "full"  title="Kinda bad - 2 stars"></label>
+                         <input type="radio"  name="rating" value="1 and a half" /><label class="half" for="" title="Meh - 1.5 stars"></label>
+                         <input type="radio" name="rating" value="1" /><label class = "full"  title="Sucks big time - 1 star"></label>
+                         <input type="radio"  name="rating" value="half"  /><label class="half" for="" title="Sucks big time - 0.5 stars"></label>         
+                         {% elif rating > 1.5 %}
+                         <input type="radio" name="rating" value="5" /><label class = "full"  title="Awesome - 5 stars"></label>
+                         <input type="radio" name="rating" value="4 and a half" /><label class="half" for="" title="Pretty good - 4.5 stars"></label>
+                         <input type="radio"  name="rating" value="4"  /><label class = "full"  title="Pretty good - 4 stars"></label>
+                         <input type="radio"  name="rating" value="3 and a half" /><label class="half" for="" title="Meh - 3.5 stars"></label>
+                         <input type="radio"  name="rating" value="3"  /><label class = "full"  title="Meh - 3 stars"></label>
+                         <input type="radio"  name="rating" value="2 and a half"/><label class="half" for="" title="Kinda bad - 2.5 stars"></label>
+                         <input type="radio"  name="rating" value="2" checked disabled='disabled'  /><label class = "full"  title="Kinda bad - 2 stars"></label>
+                         <input type="radio"  name="rating" value="1 and a half" /><label class="half" for="" title="Meh - 1.5 stars"></label>
+                         <input type="radio" name="rating" value="1" /><label class = "full"  title="Sucks big time - 1 star"></label>
+                         <input type="radio"  name="rating" value="half"/><label class="half" for="" title="Sucks big time - 0.5 stars"></label>
+                         {% elif rating > 1 %}
+                         <input type="radio" name="rating" value="5" /><label class = "full"  title="Awesome - 5 stars"></label>
+                         <input type="radio" name="rating" value="4 and a half" /><label class="half" for="" title="Pretty good - 4.5 stars"></label>
+                         <input type="radio"  name="rating" value="4"  /><label class = "full"  title="Pretty good - 4 stars"></label>
+                         <input type="radio"  name="rating" value="3 and a half" /><label class="half" for="" title="Meh - 3.5 stars"></label>
+                         <input type="radio"  name="rating" value="3"  /><label class = "full"  title="Meh - 3 stars"></label>
+                         <input type="radio"  name="rating" value="2 and a half"/><label class="half" for="" title="Kinda bad - 2.5 stars"></label>
+                         <input type="radio"  name="rating" value="2"/><label class = "full"  title="Kinda bad - 2 stars"></label>
+                         <input type="radio"  name="rating" value="1 and a half" checked disabled='disabled'  /><label class="half" for="" title="Meh - 1.5 stars"></label>
+                         <input type="radio" name="rating" value="1" /><label class = "full"  title="Sucks big time - 1 star"></label>
+                         <input type="radio"  name="rating" value="half"  /><label class="half" for="" title="Sucks big time - 0.5 stars"></label>
+                         {% elif rating > 0.5 %}
+                         <input type="radio" name="rating" value="5" /><label class = "full"  title="Awesome - 5 stars"></label>
+                         <input type="radio" name="rating" value="4 and a half" /><label class="half" for="" title="Pretty good - 4.5 stars"></label>
+                         <input type="radio"  name="rating" value="4"  /><label class = "full"  title="Pretty good - 4 stars"></label>
+                         <input type="radio"  name="rating" value="3 and a half" /><label class="half" for="" title="Meh - 3.5 stars"></label>
+                         <input type="radio"  name="rating" value="3"  /><label class = "full"  title="Meh - 3 stars"></label>
+                         <input type="radio"  name="rating" value="2 and a half"/><label class="half" for="" title="Kinda bad - 2.5 stars"></label>
+                         <input type="radio"  name="rating" value="2"/><label class = "full"  title="Kinda bad - 2 stars"></label>
+                         <input type="radio"  name="rating" value="1 and a half" /><label class="half" for="" title="Meh - 1.5 stars"></label>
+                         <input type="radio" name="rating" value="1" checked disabled='disabled'/><label class = "full"  title="Sucks big time - 1 star"></label>
+                         <input type="radio"  name="rating" value="half"/><label class="half" for="" title="Sucks big time - 0.5 stars"></label>
+                         {% elif rating > 0 %}
+                         <input type="radio" name="rating" value="5" /><label class = "full"  title="Awesome - 5 stars"></label>
+                         <input type="radio" name="rating" value="4 and a half" /><label class="half" for="" title="Pretty good - 4.5 stars"></label>
+                         <input type="radio"  name="rating" value="4"  /><label class = "full"  title="Pretty good - 4 stars"></label>
+                         <input type="radio"  name="rating" value="3 and a half" /><label class="half" for="" title="Meh - 3.5 stars"></label>
+                         <input type="radio"  name="rating" value="3"  /><label class = "full"  title="Meh - 3 stars"></label>
+                         <input type="radio"  name="rating" value="2 and a half"/><label class="half" for="" title="Kinda bad - 2.5 stars"></label>
+                         <input type="radio"  name="rating" value="2"/><label class = "full"  title="Kinda bad - 2 stars"></label>
+                         <input type="radio"  name="rating" value="1 and a half" /><label class="half" for="" title="Meh - 1.5 stars"></label>
+                         <input type="radio" name="rating" value="1" /><label class = "full"  title="Sucks big time - 1 star"></label>
+                         <input type="radio"  name="rating" value="half" checked disabled='disabled' /><label class="half" for="" title="Sucks big time - 0.5 stars"></label>
+                         {% endif %}
+                      </fieldset>  

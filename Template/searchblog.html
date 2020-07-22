@@ -1,0 +1,41 @@
+<html>
+  {% load static %}
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="{% static 'main.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+  </head>
+  <body>
+    <div class="s01">
+      <form method="GET" action="{% url 'Search:bres' %}">
+        <fieldset>
+          <legend></legend>
+        </fieldset>
+        <div class="inner-form">
+          <div class="input-field first-wrap">
+            <input id="srch" type="text" name="blog" placeholder="Search Blogs" />
+          </div>
+          <div class="input-field third-wrap">
+            <input type="submit" class="btn-search" value="search">
+          </div>
+        </div>
+      </form>
+  
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+         
+            <script>
+      $( function() {
+        $( "#srch" ).autocomplete({
+          source: "{% url 'Search:searchblog'%}",
+          minLength:1
+        });
+      } );
+      </script>
+  </body>
+</html>

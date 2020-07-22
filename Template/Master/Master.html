@@ -1,0 +1,502 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %} {% endblock %}</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+  <!-- Lawyer Listing -->
+  <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <!-- end lawyer Listing -->
+  <!-- DataTables  -->
+  <link rel="stylesheet" href="{% static 'vendor/datatables/media/css/jquery.dataTables.css' %}">
+  <!-- page stylesheets -->
+  <!-- end page stylesheets -->
+  <!-- build:css({.tmp,app}) styles/app.min.css -->
+  <link rel="stylesheet" href="{% static 'styles/webfont.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/climacons-font.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/font-awesome.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/card.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/sli.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/app.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/app.skins.css' %}">
+  <!-- endbuild -->
+  <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"></script>
+</head>
+
+<body >
+  <!-- page loading spinner -->
+  <!-- <div class="pageload">
+    <div class="pageload-inner">
+      <div class="sk-rotating-plane"></div>
+    </div>
+  </div> -->
+  <!-- /page loading spinner -->
+  <div class="app layout-fixed-header">
+    <!-- sidebar panel -->
+    <div class="sidebar-panel offscreen-left">
+      <div class="brand">
+        <!-- toggle small sidebar menu -->
+        <a href="javascript:;" class="toggle-apps hidden-xs" data-toggle="quick-launch">
+          <i class="icon-grid"></i>
+        </a>
+        <!-- /toggle small sidebar menu -->
+        <!-- toggle offscreen menu -->
+        <div class="toggle-offscreen">
+          <a href="javascript:;" class="visible-xs hamburger-icon" data-toggle="offscreen" data-move="ltr">
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+        </div>
+        <!-- /toggle offscreen menu -->
+        <!-- logo -->
+        <a class="brand-logo">
+          <span>Legal Aid</span>
+        </a>
+        <a href="#" class="small-menu-visible brand-logo">Aid</a>
+        <!-- /logo -->
+      </div>
+      <ul class="quick-launch-apps hide">
+        <li>
+          <a href="apps-gallery.html">
+            <span class="app-icon bg-danger text-white">
+            G
+            </span>
+            <span class="app-title">Gallery</span>
+          </a>
+        </li>
+        <li>
+          <a href="apps-messages.html">
+            <span class="app-icon bg-success text-white">
+            M
+            </span>
+            <span class="app-title">Messages</span>
+          </a>
+        </li>
+        <li>
+          <a href="apps-social.html">
+            <span class="app-icon bg-primary text-white">
+            S
+            </span>
+            <span class="app-title">Social</span>
+          </a>
+        </li>
+        <li>
+          <a href="apps-travel.html">
+            <span class="app-icon bg-info text-white">
+            T
+            </span>
+            <span class="app-title">Travel</span>
+          </a>
+        </li>
+      </ul>
+      <!-- main navigation -->
+      <nav role="navigation">
+        <ul class="nav">
+          <!-- cards -->
+          <li>
+            <a href="javascript:;">
+              <span class="badge pull-right">4</span>
+              <i class="icon-drop"></i>
+              <span>Appointment</span>
+            </a>
+            <ul class="sub-menu">
+              <li>
+                <a href="{% url 'Appointment:arequests' %}">
+                  <span>Appointment Requests</span>
+                </a>
+              </li>
+              <li>
+              <a href="#">  <!-- <a href=" url 'Appointment:appointments' "> -->
+                  <span>Confirmed Appointments</span>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'Appointment:status' %}">
+                  <span>Appointment Status</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- /cards -->
+          <!-- apps -->
+          <li>
+            <a href="javascript:;">
+              <i class="icon-cursor"></i>
+              <span>Chats</span>
+            </a>
+            <ul class="sub-menu">
+             
+              <li>
+                <a href="{% url 'Appointment:status' %}">
+                  <span>Messages</span>
+                </a>
+            </ul>
+          </li>
+          <!-- /apps -->
+          <!-- commerce -->
+          <li>
+            <a href="javascript:;">
+              <i class="icon-magnifier"></i>
+              <span>Search</span>
+            </a>
+            <ul class="sub-menu">
+              <li>
+                <a href="{% url 'Search:searchlawyer' %}">
+                  <span>Search Lawyers</span>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'lawyer:Lawyerlist' %}">
+                  <span>All Lawyers</span>
+                </a>
+              </li> <li>
+                <a href="{% url 'Search:searchblog' %}">
+                  <span>Search Blogs</span>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
+          <!-- /commerce -->
+          <!-- ui -->
+          <li>
+            <a href="javascript:;">
+              <i class="icon-book-open"></i>
+              <span>Blog</span>
+            </a>
+            <ul class="sub-menu">
+              <li>
+                <a href="{% url 'Blog:bloglist' %}">
+                  <span>Blogs</span>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'Blog:myblog' %}">
+                  <span>My Blogs</span>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'Blog:addblog' %}">
+                  <span>Add Blog</span>
+                </a>
+              </li>   
+              </li>
+            </ul>
+          </li>
+          <!-- /ui -->
+          <!-- forms -->
+          <li>
+            <a href="javascript:;">
+              <i class="icon-book-open"></i>
+              <span>Questionaire</span>
+            </a>
+            <ul class="sub-menu">
+              <li>
+                <a href="{% url 'Questionaire:askq' %}">
+                  <span>Ask Questions</span>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'Questionaire:lists' %}">
+                  <span>Questions</span>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
+          <!-- /forms -->
+        
+        
+          <!-- maps -->
+          <li>
+            <a href="javascript:;">
+              <i class="icon-pointer"></i>
+              <span>Maps</span>
+            </a>
+            <ul class="sub-menu">
+              <li>
+                <a href="maps-google.html">
+                  <span>Google</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- /maps -->
+          <!-- extras -->
+          <!-- /extras -->
+          <!-- menu levels -->
+        
+          <!-- menu levels -->
+          <!-- documentation -->
+       
+          <!-- /documentation -->
+          <!-- static -->
+        
+          <!-- /static -->
+        </ul>
+      </nav>
+      <!-- /main navigation -->
+    </div>
+    <!-- /sidebar panel -->
+    <!-- content panel -->
+    <div class="main-panel">
+      <!-- top header -->
+      <div class="header navbar">
+        <div class="brand visible-xs">
+          <!-- toggle offscreen menu -->
+          <div class="toggle-offscreen">
+            <a href="javascript:;" class="hamburger-icon visible-xs" data-toggle="offscreen" data-move="ltr">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+          </div>
+          <!-- /toggle offscreen menu -->
+          <!-- logo -->
+          <a class="brand-logo">
+            <span>REACTOR</span>
+          </a>
+          <!-- /logo -->
+        </div>
+        <ul class="nav navbar-nav hidden-xs">
+          <li>
+            <a href="javascript:;" class="small-sidebar-toggle ripple" data-toggle="layout-small-menu">
+              <i class="icon-toggle-sidebar"></i>
+            </a>
+          </li>
+          <li class="searchbox">
+            <a href="javascript:;" data-toggle="search">
+              <i class="search-close-icon icon-close hide"></i>
+              <i class="search-open-icon icon-magnifier"></i>
+            </a>
+          </li>
+          <li class="navbar-form search-form hide">
+            <input type="search" class="form-control search-input" placeholder="Start typing...">
+            <div class="search-predict hide">
+              <a href="#">Searching for 'purple rain'</a>
+              <div class="heading">
+                <span class="title">People</span>
+              </div>
+              <ul class="predictive-list">
+                <li>
+                  <a class="avatar" href="#">
+                    <img src="{% static 'images/face1.jpg' %}" class="img-circle" alt="">
+                    <span>Tammy Carpenter</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="avatar" href="#">
+                    <img src="{% static 'images/face2.jpg' %}" class="img-circle" alt="">
+                    <span>Catherine Moreno</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="avatar" href="#">
+                    <img src="{% static 'images/face3.jpg' %}" class="img-circle" alt="">
+                    <span>Diana Robertson</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="avatar" href="#">
+                    <img src="{% static 'images/face4.jpg' %}" class="img-circle" alt="">
+                    <span>Emma Sullivan</span>
+                  </a>
+                </li>
+              </ul>
+              <div class="heading">
+                <span class="title">Page posts</span>
+              </div>
+              <ul class="predictive-list">
+                <li>
+                  <a class="avatar" href="#">
+                    <img src="{% static 'images/unsplash/img2.jpeg' %}" class="img-rounded" alt="">
+                    <span>The latest news for cloud-based developers </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="avatar" href="#">
+                    <img src="{% static 'images/unsplash/img2.jpeg' %}" class="img-rounded" alt="">
+                    <span>Trending Goods of the Week</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <li>
+            <a href="javascript:;" class="ripple" data-toggle="dropdown">
+              <span>EN</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="javascript:;">English</a>
+              </li>
+              <li>
+                <a href="javascript:;">Russian</a>
+              </li>
+              <li>
+                <a href="javascript:;">French</a>
+              </li>
+              <li>
+                <a href="javascript:;">Spanish</a>
+              </li>
+            </ul>
+          </li>
+          {% block notify %}
+      
+          {% endblock %}
+          <li>
+            <a href="javascript:;" class="ripple" data-toggle="dropdown">
+              {% block userprof %}
+              {%block profile %} {% endblock %}
+              <span>{% block user %} {% endblock %}</span>{% endblock %}
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="javascript:;">Settings</a>
+              </li>
+              <li>
+                <a href="javascript:;">Upgrade</a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <span class="label bg-danger pull-right">34</span>
+                  <span>Notifications</span>
+                </a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="javascript:;">Help</a>
+              </li>
+              <li>
+                <a href="{% url 'SocialCred:logout' %}">Logout</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:;" class="ripple" data-toggle="layout-chat-open">
+              <i class="icon-user"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- /top header -->
+      <!-- main area -->
+      <div class="app layout-fixed-header">
+      <div class="" style="margin-left: 10px;
+      margin-right: 100px;" >
+        <div class="main-content">
+         {% block appointstatus%} {% endblock %}
+
+      {% block AppointmentTable %} 
+      
+      {% endblock %}
+      {% block addblog %}
+
+      {% endblock %}
+
+      {% block bloglist %}
+
+      {% endblock %}
+
+      {% block blogdetail %}
+
+      {% endblock %}
+
+      {% block ques %}
+      {% endblock %}
+
+      {% block Appointmentform %} 
+      {% endblock %}
+      {% block lawyerlisting %}
+      {% endblock %}
+
+      {% block slisting %}
+      {% endblock %}
+
+      {% block search%}
+      
+      {% endblock %}
+      </div>
+    </div>
+      <!-- /main area -->
+    </div>
+  </div>
+    <!-- /content panel -->
+    <!-- bottom footer -->
+    <footer class="content-footer">
+      <nav class="footer-right">
+        <ul class="nav">
+          <li>
+            <a href="javascript:;">{% block email %} {% endblock %}</a>
+          </li>
+          <li>
+            <a href="javascript:;" class="scroll-up">
+              <i class="fa fa-angle-up"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <nav class="footer-left hidden-xs">
+        <ul class="nav">
+          <li>
+            <a href="javascript:;"><span>About</span> Reactor</a>
+          </li>
+          <li>
+            <a href="javascript:;">Privacy</a>
+          </li>
+          <li>
+            <a href="javascript:;">Terms</a>
+          </li>
+          <li>
+            <a href="javascript:;">Help</a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+    <!-- /bottom footer -->
+
+  </div>
+  <!-- build:js({.tmp,app}) scripts/app.min.js -->
+  <script src="{% static 'scripts/helpers/modernizr.js' %}"></script>
+  <script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
+  <script src="{% static 'vendor/fastclick/lib/fastclick.js' %}"></script>
+  <script src="{% static 'vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js' %}"></script>
+  <script src="{% static 'scripts/helpers/smartresize.js' %}"></script>
+  <script src="{% static 'scripts/constants.js' %}"></script>
+  <script src="{% static 'scripts/main.js' %}"></script>
+  <!-- endbuild -->
+  <!-- page scripts -->
+  <script src="{% static 'vendor/flot/jquery.flot.js' %}"></script>
+  <script src="{% static 'vendor/flot/jquery.flot.resize.js' %}"></script>
+  <script src="{% static 'vendor/flot/jquery.flot.categories.js' %}"></script>
+  <script src="{% static 'vendor/flot/jquery.flot.stack.js' %}"></script>
+  <script src="{% static 'vendor/flot/jquery.flot.time.js' %}"></script>
+  <script src="{% static 'vendor/flot/jquery.flot.pie.js' %}"></script>
+  <script src="{% static 'vendor/flot-spline/js/jquery.flot.spline.js' %}"></script>
+  <script src="{% static 'vendor/flot.orderbars/js/jquery.flot.orderBars.js' %}"></script>
+  <!-- end page scripts -->
+  <!-- initialize page scripts -->
+  <script src="{% static 'scripts/helpers/sameheight.js' %}"></script>
+  <script src="{% static 'scripts/ui/dashboard.js' %}"></script>
+  <!-- end initialize page scripts -->
+  <!-- DataTables -->
+  <script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'scripts/helpers/bootstrap-datatables.js' %}"></script>
+  <script src="{% static 'scripts/tables/table-edit.js' %}"></script>
+  <!-- End DataTables -->
+</body>
+
+</html>

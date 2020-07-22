@@ -1,0 +1,110 @@
+{% extends "Master/Master.html"  %}
+{% load static %}
+{% block title %} Lawyers {% endblock%}
+{% block userprof %}
+{%include "Master/userprof.html" %}
+{% endblock %}
+{% block notify %}
+{% include "Master/notification.html" %}
+
+{% endblock %}
+
+{% block email %} {{user.email}} {% endblock %}
+    {% block lawyerlisting %} 
+  
+            {% for i in pageobj %}
+            <div class="row">
+
+                <!-- Single Featured Property -->
+               
+                <div class="col-md-4">
+                    <div class="single-featured-property mb-50">
+                        <!-- Property Thumbnail -->
+                        <div class="property-thumb">
+                            <img src="/media/{{i.profile_picture}}" alt="">
+
+                            <div class="tag">
+                                <span>{{i.usr.first_name}} {{i.usr.id}}</span>
+                            </div>
+                            <div class="list-price">
+                                <p><a href="slaw/{{i.usr.id}} " style="color: black;"> View Details</a></p>
+                            </div>  
+                        </div>
+                        <!-- Property Content -->
+                        <div class="property-content">                            
+                            <strong> <p style="padding-top: 10%;">Expertise in {{i.speciality|lower|capfirst}}</p></strong>
+                            <p class="location"><a href="#"><img src="{% static 'img/icons/location.png' %}" alt=""></a>{{i.address |lower|capfirst}}</p>
+                            <p>{{i.description|truncatechars:100}}</p>
+                                               
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="single-featured-property mb-50">
+                        <!-- Property Thumbnail -->
+                        <div class="property-thumb">
+                            <img src="/media/{{i.profile_picture}}" alt="">
+
+                            <div class="tag">
+                                <span>{{i.usr.first_name}}</span>
+                            </div>
+                            <div class="list-price">
+                                <p><a href="slaw/{{i.usr.id}} " style="color: black;"> View Details</a></p>
+                            </div>
+                        </div>
+                        <!-- Property Content -->
+                        <div class="property-content">
+                            <strong> <p style="padding-top: 10%;">Expertise in {{i.speciality|lower|capfirst}}</p></strong>
+                            <p class="location"><a href="#"><img src="{% static 'img/icons/location.png' %}" alt=""></a>{{i.address|lower|capfirst}}</p>
+                            <p>{{i.description|truncatechars:100}}</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="single-featured-property mb-50">
+                        <!-- Property Thumbnail -->
+                        <div class="property-thumb">
+                            <img src="/media/{{i.profile_picture}}" alt="">
+
+                            <div class="tag">
+                                <span>{{i.usr.first_name}} {{i.usr.id}}</span>
+                            </div>
+                            <div class="list-price">
+                                <p><a href="slaw/{{i.usr.id}} " style="color: black;"> View Details</a></p>
+                            </div>
+                        </div>
+                        <!-- Property Content -->
+                        <div class="property-content">
+                            <strong> <p style="padding-top: 10%;">Expertise in {{i.speciality|lower|capfirst}}</p></strong>
+                            <p class="location"><a href="#"><img src="{% static 'img/icons/location.png' %}" alt=""></a>{{i.address|lower|capfirst}}</p>
+                            <p>{{i.description|truncatechars:100}}</p>
+                            
+                        </div>
+                    </div>
+                </div>
+              
+                {% endfor%}
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% if pageobj.has_previous %}
+                    <li >
+                        <a  href="?page={{ pageobj.previous_page_number }}">←</a> 
+                        <a  href="?page={{ pageobj.previous_page_number }}">{{ pageobj.previous_page_number }}</a></li>  
+                    {% endif %}
+                    <li class="active" ><a href="#">{{ pageobj.number }}</a></li>
+                    {% if pageobj.has_next %}
+                    <li >                       
+                        <a  href="?page={{ pageobj.next_page_number }}">{{ pageobj.next_page_number }}</a>  
+                        <a  href="?page={{ pageobj.next_page_number }}">→</a>                 
+                    </li>
+                    {% endif %} 
+
+
+                </ul>
+            </nav>
+           
+
+    {% endblock %}
+    

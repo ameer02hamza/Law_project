@@ -1,0 +1,110 @@
+{% extends "Master/Master.html"  %}
+{% block title %} Appointment status {% endblock%}
+{% block userprof %}
+{%include "Master/userprof.html" %}
+{% endblock %}
+{% block notify %}
+{% include "Master/notification.html" %}
+
+{% endblock %}
+
+
+{% block appointstatus %}
+<meta http-equiv="5">
+  <div class="app layout-fixed-header" id="test">
+        <div class="card bg-white">
+          <div class="card-header">Your &#8226; Appointments &#8226; Status &#8226;</div>
+          <div class="card-block">
+            <div class="table-responsive">
+              <table id="app" class="table table-striped table-bordered table-hover table-condensed responsive m-b-0"  data-sortable>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th>Phone Number</th>
+                    <th>Case Details</th>
+                    <th>Appointment Time</th>
+                    <th>Appointment Date</th>
+                   <th>Lawyer Name</th>
+                   <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="display" >
+                  
+                  {% for i in appointment %}
+                  <tr>
+                    <td>{{i.Name}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.Phone_no}}</td>
+                    <td>{{i.case_details|truncatechars:8}}</td>
+                    <td>{{i.adate}}</td>
+                    <td>{{i.atime}}</td>
+                    {% for law in i.lawyer.all %}
+                    <td>{{law.first_name}} {{law.last_name}}</td>
+                    {% endfor %}
+                    {% if i.status == 'pending' %}
+                    <td style="color: blue;">{{i.status}}</td>
+                    {% elif i.status == 'Confirmed' %}
+                    <td style="color: green;">{{i.status}}</td>
+                    {% else %}
+                    <td style="color:red">{{i.status}}</td>
+                  {% endif %} 
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+  
+      <!-- /main area -->
+   
+    <!-- /content panel -->
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
+  </script>
+  <script>
+    $(document).ready(function(){
+     setInterval(function(){
+       $.ajax({
+         type:'GET',
+         url: "{% url 'Appointment:st' %}",
+         success: function(response){
+           $('#display').empty()
+           for(var k in response.name){
+             console.log(response.name[k])
+           }
+            for (var key in response.apps, response.name){
+              var st =response.apps[key].status
+              if(st == 'pending'){
+                st ="<td style='color: blue;'>"+response.apps[key].status +"</td>"
+              }
+              else if(st== 'Rejected'){
+                st ="<td style='color: red;'>"+response.apps[key].status +"</td>"
+              }
+              else{
+                st ="<td style='color: green;'>"+response.apps[key].status +"</td>"
+              }
+
+              console.log(response.apps[key])
+              var temp = "<tr><td scope='row'>"+response.apps[key].Name+
+                "</td><td>"+response.apps[key].email+
+                "</td><td>"+response.apps[key].Phone_no+
+                  "</td><td>"+response.apps[key].case_details+
+                    "</td><td>"+response.apps[key].atime+
+                    "</td><td>"+response.apps[key].adate+
+                      "</td><td>"+ response.name[key] +"</td>"+st+
+                        "</tr>";
+              $('#display').append(temp);
+            }
+         },
+         error:function(response){
+           alert("does not load");
+         }
+       }); 
+     },1000);
+    });
+  </script>
+     
+  {% endblock %}
+ 

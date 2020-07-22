@@ -1,0 +1,69 @@
+{%extends 'Master/Master.html' %}
+{% block title %} Q&A {% endblock%}
+{% block userprof %}
+{%include "Master/userprof.html" %}
+{% endblock %}
+{% block notify %}
+{% include "Master/notification.html" %}
+
+{% endblock %}
+
+     {% block ques %}
+     <style>
+        .card-inner{
+    margin-left: 4rem;
+}
+    </style>
+    {% for obj in object_list %}
+    <div class="container">
+        <h4 class="text-center">{{obj.title}}</h4>
+        
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="/media/{{obj.uprof.profile_picture}}" class="img img-rounded img-circle"/>
+                        <p class="text-secondary text-center">{{obj.pdate}} at {{obj.ptime}}</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p>
+                            <a class="float-left" href="#"><strong>{{obj.uprof.usr.first_name}} {{obj.uprof.usr.last_name}} </strong></a>
+                            
+    
+                       </p>
+                       <div class="clearfix"></div>
+                        <p>{{obj.question}}</p>
+                        <div class="fb-like" data-href="http://127.0.0.1:8000/ques/det/{{obj.id}}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
+                    </div>
+                </div>
+                    <div class="card card-inner">
+                        <div class="card-body">
+                            <div class="row">
+                               
+                                <div class="fb-comments" data-href="http://127.0.0.1:8000/ques/det/{{obj.id}}"  width="450px" ></div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {% if object_list.has_previous %}
+            <li >
+                <a  href="?page={{ object_list.previous_page_number }}">←</a> 
+                <a  href="?page={{ object_list.previous_page_number }}">{{ object_list.previous_page_number }}</a></li>  
+            {% endif %}
+            <li class="active" ><a href="#">{{ object_list.number }}</a></li>
+            {% if object_list.has_next %}
+            <li >                       
+                <a  href="?page={{ object_list.next_page_number }}">{{ object_list.next_page_number }}</a>  
+                <a  href="?page={{ object_list.next_page_number }}">→</a>                 
+            </li>
+            {% endif %} 
+
+
+        </ul>
+    </nav>
+    {% endblock %}

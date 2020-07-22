@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+.card-inner{
+    margin-left: 4rem;
+}
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <form action="" id=form method="post">
+    {% csrf_token %}
+    {% if rtng.count <= 0 %}
+  <Textarea id="review" name="review" cols="50" rows="6" hidden></Textarea>
+  <input type="submit" id="btn" class=" btn-primary" value="Submit Review" hidden="hidden">
+    <fieldset class="rating">
+      
+        <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+        <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+        <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+        <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+        <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+        <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+        <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+        <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+        <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+        <br><input type="text" id="check" name="check" hidden="hidden">
+        <br>
+      </fieldset> <br>
+      {% endif %}
+    </form>
+      {% for i in rtng %}
+      <div class="container">
+        <h5 class="text-center">{{rtng.count}} people rated this lawyer</h5>
+        
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2">
+                      {% for pro in law %}
+                      {% if pro.usr.id == i.RC.id %}
+                        <img src="/media/{{pro.profile_picture}}" class="img-circle"/>
+                        {% endif %}
+                        {% endfor %}
+                        <p class="text-secondary text-center">15 Minutes Ago</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p>
+                            <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>{{i.RC.first_name}} {{i.RC.last_name}}</strong></a>
+                            <span class="float-right"><i class="text-warning fa fa-star">{{i.ratings}}</i></span>
+                              
+      
+                       </p>
+                       <div class="clearfix"></div>
+                        <p>{{i.review}}</p>
+                        <p>{% if request.user == i.RC %}
+                            <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Edit</a>
+                            <!-- <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a> -->
+                            {% endif %}
+                       </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+    
+</body>
+<script>
+  $(document).ready(function(){
+
+    $('#starhalf').click(function(){
+  
+  $('#check').val(".5")
+  $('#btn').show()
+  $('#review').show()
+
+  });
+  $('#star1').click(function(){
+  
+  $('#check').val("1")
+  $('#btn').show()
+  $('#review').show()
+
+  });
+  $('#star1half').click(function(){
+  
+  $('#check').val("1.5")
+  $('#btn').show()
+
+  $('#review').show()
+
+  });
+  $('#star2').click(function(){
+  
+  $('#check').val("2")
+  $('#btn').show()
+  $('#review').show()
+
+  });
+  $('#star2half').click(function(){
+  
+  $('#check').val("2.5")
+  $('#btn').show()
+  $('#review').show()
+
+  });
+  $('#star3').click(function(){
+  
+  $('#check').val("3")
+  $('#btn').show()
+
+  $('#review').show()
+
+  });
+  $('#star3half').click(function(){
+  
+  $('#check').val("3.5")
+  $('#btn').show()
+
+  $('#review').show()
+
+  });
+  $('#star4').click(function(){
+  
+  $('#check').val("4")
+  $('#btn').show()
+
+  $('#review').show()
+
+  });
+  $('#star4half').click(function(){
+  
+  $('#check').val("4.5")
+  $('#btn').show()
+
+  $('#review').show()
+
+  });
+  $('#star5').click(function(){
+  
+  $('#check').val("5")
+  $('#btn').show()
+
+  $('#review').show()
+
+  });
+
+  });
+</script>
+</html>

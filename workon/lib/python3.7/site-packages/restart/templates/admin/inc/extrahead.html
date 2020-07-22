@@ -1,0 +1,23 @@
+{% load url from future %}
+{% if user.is_authenticated %}{% if user.is_superuser %}
+<script>window.jQuery || document.write("<script src='{{ STATIC_URL }}admin/js/jquery.js'>\x3C/script>");</script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<script type="text/javascript">
+    var restart_widget_url = "{% url 'admin:restart_widget' %}"; 
+    var restart_widget_call = "{% url 'admin:restart_widget_restart' %}"; 
+    var restart_widget_updated = "{% url 'admin:restart_widget_updated' %}"; 
+
+    function downloadJSAtOnload() { 
+        // Load the restart.js
+        var element = document.createElement("script"); 
+        element.src = "{{ STATIC_URL }}admin/js/restart.js"; 
+        document.body.appendChild(element);
+    } 
+    if (window.addEventListener) 
+        window.addEventListener("load", downloadJSAtOnload, false); 
+    else if (window.attachEvent) 
+        window.attachEvent("onload", downloadJSAtOnload); 
+    else 
+        window.onload = downloadJSAtOnload;
+</script>
+{% endif %}{% endif %}

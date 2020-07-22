@@ -1,0 +1,47 @@
+{% extends "Master/Master.html"  %}
+{% block userprof %}
+{%include "Master/userprof.html" %}
+{% endblock %}
+{% block notify %}
+{% include "Master/notification.html" %}
+
+{% endblock %}
+{% block addblog %}
+
+    <section class="south-contact-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-heading">
+                        <h2>Post Blog</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Contact Form Area -->
+                <div class="col-12 col-lg-8">
+                    <div class="contact-form">
+                        <form  method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="title" id="contact-name" placeholder="Blog Title" required>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="file" name="profil" id="" required>
+                               </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="blog" cols="30" rows="10" placeholder="Your Message" required></textarea>
+                            </div>
+                            <input type="submit" class="btn south-btn" value="Add Blog">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {% endblock %}
+
+    

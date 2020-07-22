@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+</head>
+<body>
+{% for chat in chat %}
+<!-- for sender -->
+{{chat.sender.usr.first_name}} last {{chat.receiver.usr.first_name}}
+{% if request.user.id == chat.sender.usr.id and chat.receiver.usr == rec.usr %}
+<p>
+   <b>sender</b> {{chat.message}} at {{chat.datetime}} by {{chat.sender.usr.first_name}}
+</p>
+
+<!-- for receiver -->
+{% elif request.user.id == chat.receiver.usr.id and chat.sender.usr == rec.usr %}
+<p>
+   <b>Receiver</b> {{chat.message}} at {{chat.datetime}} by {{chat.sender.usr.first_name}} 
+</p>
+{% endif %}
+{% endfor %}
+
+<form action="" method="post">
+{% csrf_token %}
+    <input type="text" name="message" placeholder="Type your Message here.........">
+    <input type="submit" value="Send">
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    // console.log(window.location)
+    var loc = window.location
+    var wsStart = 'ws://'
+
+    if (loc.protocol == 'https:'){
+         wsStart = 'wss://'
+    }
+
+    var endpoint = wsStart + loc.host + loc.pathname
+    var socket = new WebSocket(endpoint);
+
+    socket.onmessage = function(e){
+            console.log("message ", e);
+    }
+    socket.onopen = function(e){
+            console.log("open ", e);
+    }
+    socket.onerror = function(e){
+            console.log("Error ", e);
+    }
+    socket.onclose = function(e){
+            console.log("Close ", e);
+    }
+
+</script>
+</body>
+</html>
