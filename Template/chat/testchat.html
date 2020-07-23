@@ -5,6 +5,7 @@
     <title>Chat</title>
 </head>
 <body>
+        <div id="chat-items">
 {% for chat in chat %}
 <!-- for sender -->
 {{chat.sender.usr.first_name}} last {{chat.receiver.usr.first_name}}
@@ -20,9 +21,10 @@
 </p>
 {% endif %}
 {% endfor %}
-
+</div>
 <form action="" id="form" method="post">
 {% csrf_token %}
+<input type="text" value="{{user.username}}" id="myusername" hidden>
     <input id="data" type="text" name="message" placeholder="Type your Message here........." required>
     <input type="submit" value="Send">
 </form>
@@ -35,6 +37,8 @@
     var loc = window.location;
     var wsStart = 'ws://';
     var msgInput = $('#data');
+    var chatHolder = $('#chat-items');
+    var me = $('#myusername').val();
 
     if (loc.protocol == 'https:'){
          wsStart = 'wss://'
@@ -45,6 +49,8 @@
 
     socket.onmessage = function(e){
             console.log("message ", e);
+            var chatDataMsg = JSON.parse(e.data); 
+            chatHolder.append("<p>" + chatDataMsg.message + " by " + chatDataMsg.username + "</p>");
     }
     socket.onopen = function(e){
             console.log("open ", e);
@@ -54,10 +60,11 @@
                     var finalData = {"message": msgText};
                     socket.send(JSON.stringify(finalData));
                 //     msgInput.val('');
-                    formData[0].reset();
-                
+                    formData[0].reset(); 
+                    chatHolder.append("<p>" + msgText +" via " + me + "</p>");             
                    
             })
+            
     }
     socket.onerror = function(e){
             console.log("Error ", e);
