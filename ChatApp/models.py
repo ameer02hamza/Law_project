@@ -1,8 +1,12 @@
 from django.db import models
 from SocialCred.models import UserInfo
 from django.utils import timezone
+from django.db import models
 
-# Create your models here.
+from django.conf import settings
+from django.db import models
+from django.db.models import Q
+
 
 
 class ChatBox(models.Model):

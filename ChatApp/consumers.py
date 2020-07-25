@@ -4,16 +4,21 @@ from django.contrib.auth import get_user_model
 from channels.consumer import AsyncConsumer
 from channels.db import database_sync_to_async
 from . models import ChatBox
+from SocialCred.models import UserInfo, User
 
 class ChatConsumer(AsyncConsumer):
     async def websocket_connect(self, event):
         print("connected", event)
+        receiver = self.scope['url_route']['kwargs']['username']
+        sender = self.scope['user']
+        print("s ", sender, " receiver ", receiver)
+        await self.channel_layer.group_add(
+            "gossip",
+            self.channel_name
+        )
         await self.send({
             "type": "websocket.accept",
         })
-        receiver = self.scope['url_route']['kwargs']['username']
-        sender = self.scope['user']
-        print("s ",sender, " receiver ", receiver)
         # await asyncio.sleep(10)
 
 
@@ -29,14 +34,35 @@ class ChatConsumer(AsyncConsumer):
 
             if user.is_authenticated:
                 username = user.username
+
             myResponse = {
                 'message':msg,
                 'username':username
             }
-            await self.send({
-                "type": "websocket.send",
-                "text": json.dumps(myResponse)
-            })
+            await self.create_chat(msg)
+            await self.channel_layer.group_send("gossip",
+                                                {
+                                                    "type": "chat_message",
+                                                    "text": json.dumps(myResponse)
+                                                })
+
+    async def chat_message(self, event):
+        print("message", event)
+        await self.send({
+            "type": "websocket.send",
+            "text": event['text']
+        })
+
+    @database_sync_to_async
+    def create_chat(self, msg ):
+        receiver = self.scope['url_route']['kwargs']['username']
+        sender = self.scope['user']
+        sndr = User.objects.get(username=sender)
+        rec = User.objects.get(username=receiver)
+        s =UserInfo.objects.get(usr=sndr)
+        r =UserInfo.objects.get(usr=rec)
+        return ChatBox.objects.create(sender=s, receiver=r, message=msg)
+
 
     async def websocket_disconnect(self, event):
         print("Disconnected", event)

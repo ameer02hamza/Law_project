@@ -29,7 +29,8 @@
     <input type="submit" value="Send">
 </form>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
     // console.log(window.location)
@@ -50,7 +51,7 @@
     socket.onmessage = function(e){
             console.log("message ", e);
             var chatDataMsg = JSON.parse(e.data); 
-            chatHolder.append("<p>" + chatDataMsg.message + " by " + chatDataMsg.username + "</p>");
+            chatHolder.append("<p><strong>Sender</strong>" + chatDataMsg.message + " by " + chatDataMsg.username + "</p>");
     }
     socket.onopen = function(e){
             console.log("open ", e);
@@ -61,7 +62,7 @@
                     socket.send(JSON.stringify(finalData));
                 //     msgInput.val('');
                     formData[0].reset(); 
-                    chatHolder.append("<p>" + msgText +" via " + me + "</p>");             
+                //     chatHolder.append("<p>" + msgText +" via " + me + "</p>");             
                    
             })
             
