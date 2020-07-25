@@ -75,11 +75,12 @@
 
                                              
                     <div class="lv-body" id="ms-scrollbar" style="overflow:scroll; overflow-x: hidden; height:520px;">
+                        <div id="chat-items">
                         {% for chat in chat %}   
                         {% if request.user.id == chat.sender.usr.id and chat.receiver.usr == rec.usr %} 
                     <div class="lv-item media"> 
                     <div class="lv-avatar pull-left"> 
-                    <img src="/media/{{chat.sender.profile_picture}}"/>
+                    <img src="/media/{{chat.sender.profile_picture}}" id="imgsrc"/>
                     </div>
                     <div class="media-body"> 
                     <div class="ms-item"> 
@@ -91,7 +92,7 @@
                 {% elif request.user.id == chat.receiver.usr.id and chat.sender.usr == rec.usr %}
                 <div class="lv-item media right"> 
                     <div class="lv-avatar pull-right"> 
-                <img src="/media/{{chat.sender.profile_picture}}"/>
+                <img src="/media/{{chat.sender.profile_picture}}" id="imgsr"/>
                     </div>
                 <div class="media-body"> 
                     <div class="ms-item"> 
@@ -102,13 +103,15 @@
             </div>
             {% endif%}
             {%endfor%}   
+        </div>
                 </div>
                                                                  
         <div class="lv-footer ms-reply">   
-            <form action="" method="post">
-                                            {% csrf_token %}                              
-                                     <input class="textarea" placeholder="Write messages..." name="message">
-                                   
+            <form action="" id="form" method="post">
+                                            {% csrf_token %}      
+                                            <input type="text" value="{{user.username}}" id="myusername" hidden>                        
+                                     <input class="textarea" id="data" placeholder="Write messages..." name="message">
+                                   <!-- <input type="submit" value="send"> -->
                                          <button  class="button" type="submit" >
                                             <span class="glyphicon glyphicon-send"></span>
                                             </button>
@@ -121,6 +124,68 @@
                  </div>
              </div>
          
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    // console.log(window.location)
+    var formData = $('#form');
+    var loc = window.location;
+    var wsStart = 'ws://';
+    var msgInput = $('#data');
+    var chatHolder = $('#chat-items');
+    var me = $('#myusername').val();
+    var img1 = $('#imgsrc').attr('src');
+    var img2 = $('#imgsr').attr('src');
+
+    if (loc.protocol == 'https:'){
+         wsStart = 'wss://'
+    }
+
+    var endpoint = wsStart + loc.host + loc.pathname;
+    var socket = new WebSocket(endpoint);
+
+    socket.onmessage = function(e){
+            console.log("message ",e);
+            var chatDataMsg = JSON.parse(e.data); 
+            console.log(img1,"mesg")
+            if(chatDataMsg.username == me){
+               chatHolder.append("<div class='lv-item media'><div class='lv-avatar pull-left'><img src="+img1 +" id='imgsrc'/></div><div class='media-body'><div class='ms-item'><label style='color: black;'>"+chatDataMsg.message+
+               "</label></div><small class='ms-date'><span class='glyphicon glyphicon-time'></span>&nbsp;<label>"+chatDataMsg.time+
+               "</label></small></div></div>");
+                // chatHolder.append("<p><img src="+ img1 +" height='20px' />" + chatDataMsg.message + " by " + chatDataMsg.username + "</p>");
+            }
+            else{
+
+                chatHolder.append("<div class='lv-item media right'><div class='lv-avatar pull-right'><img src="+img2 +" id='imgsrc'/></div><div class='media-body'><div class='ms-item'><label style='color: black;'>"+chatDataMsg.message+
+               "</label></div><small class='ms-date'><span class='glyphicon glyphicon-time'></span>&nbsp;<label>"+chatDataMsg.time+
+               "</label></small></div></div>");
+            }
+
+            
+    }
+    socket.onopen = function(e){
+            console.log("open ", e);
+            formData.submit(function(event){
+                    event.preventDefault()
+                    var msgText = msgInput.val();
+                    var finalData = {"message": msgText};
+                    socket.send(JSON.stringify(finalData));
+                    msgInput.val('');
+                    formData[0].reset(); 
+                //     chatHolder.append("<p>" + msgText +" via " + me + "</p>");             
+                   
+            })
+            
+    }
+    socket.onerror = function(e){
+            console.log("Error ", e);
+    }
+    socket.onclose = function(e){
+            console.log("Close ", e);
+    }
+
+</script>
          <script  type="text/javascript"> 
             window.onload = function () {
                 $("div.lv-body").scrollTop(10000);

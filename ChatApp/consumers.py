@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from channels.consumer import AsyncConsumer
 from channels.db import database_sync_to_async
 from . models import ChatBox
+from datetime import datetime
 from SocialCred.models import UserInfo, User
 
 class ChatConsumer(AsyncConsumer):
@@ -34,10 +35,10 @@ class ChatConsumer(AsyncConsumer):
 
             if user.is_authenticated:
                 username = user.username
-
             myResponse = {
-                'message':msg,
-                'username':username
+                'message': msg,
+                'username': username,
+                'time': str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
             }
             await self.create_chat(msg)
             await self.channel_layer.group_send("gossip",

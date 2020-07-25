@@ -22,4 +22,4 @@ def send(request, username):
         chatb = ChatBox(sender=m, receiver=u, message=message)
         chatb.save()
         return redirect("ChatApp:send", username=username)
-    return render(request, "chat/testchat.html", dic)
+    return render(request, "chat/Chat.html", dic)

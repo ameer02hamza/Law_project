@@ -8,15 +8,17 @@
         <div id="chat-items">
 {% for chat in chat %}
 <!-- for sender -->
-{{chat.sender.usr.first_name}} last {{chat.receiver.usr.first_name}}
 {% if request.user.id == chat.sender.usr.id and chat.receiver.usr == rec.usr %}
+<img src="/media/{{chat.sender.profile_picture}}" alt="" id="imgsrc" height='20px' >
 <p>
    <b>sender</b> {{chat.message}} at {{chat.datetime}} by {{chat.sender.usr.first_name}}
 </p>
 
 <!-- for receiver -->
 {% elif request.user.id == chat.receiver.usr.id and chat.sender.usr == rec.usr %}
+<img src="/media/{{chat.sender.profile_picture}}" alt="" id="imgsr" height='20px'>
 <p>
+
    <b>Receiver</b> {{chat.message}} at {{chat.datetime}} by {{chat.sender.usr.first_name}} 
 </p>
 {% endif %}
@@ -40,18 +42,29 @@
     var msgInput = $('#data');
     var chatHolder = $('#chat-items');
     var me = $('#myusername').val();
+    var img1 = $('#imgsrc').attr('src');
+    var img2 = $('#imgsr').attr('src');
 
     if (loc.protocol == 'https:'){
          wsStart = 'wss://'
     }
 
-    var endpoint = wsStart + loc.host + loc.pathname
+    var endpoint = wsStart + loc.host + loc.pathname;
     var socket = new WebSocket(endpoint);
 
     socket.onmessage = function(e){
-            console.log("message ", e);
+            console.log("message ",e);
             var chatDataMsg = JSON.parse(e.data); 
-            chatHolder.append("<p><strong>Sender</strong>" + chatDataMsg.message + " by " + chatDataMsg.username + "</p>");
+            console.log(img1,"mesg")
+            if(chatDataMsg.username == me){
+                chatHolder.append("<p><img src="+ img1 +" height='20px' />" + chatDataMsg.message + " by " + chatDataMsg.username + "</p>");
+            }
+            else{
+
+                chatHolder.append("<p><img src="+ img2 +" height='20px' />" + chatDataMsg.message + " by " + chatDataMsg.username + "</p>");
+            }
+
+            
     }
     socket.onopen = function(e){
             console.log("open ", e);
@@ -60,7 +73,7 @@
                     var msgText = msgInput.val();
                     var finalData = {"message": msgText};
                     socket.send(JSON.stringify(finalData));
-                //     msgInput.val('');
+                    msgInput.val('');
                     formData[0].reset(); 
                 //     chatHolder.append("<p>" + msgText +" via " + me + "</p>");             
                    
