@@ -7,16 +7,22 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
 def chatbox(request):
-    return render(request, "chat/Chat.html", {})
+    m = UserInfo.objects.get(usr=request.user)
+    friends = ChatBox.objects.filter(Q(sender=m)).distinct('receiver')
+    for f in friends:
+        print(f.receiver.usr.first_name, "name")
+    dic = {"friends": friends, "m": m}
+    return render(request, "chat/Chat.html", dic)
 @csrf_exempt
 def send(request, username):
     form = ChatBoxForm()
     uid = User.objects.get(username=username)
     u = UserInfo.objects.get(usr=uid)
     m = UserInfo.objects.get(usr=request.user)
+    friends = ChatBox.objects.filter(Q(sender=m)).distinct('receiver')
     chat = ChatBox.objects.filter(Q(sender=m, receiver=u) | Q(receiver=m, sender=u))
 
-    dic = {"chat": chat, "rec": u, "m": m}
+    dic = {"chat": chat, "rec": u, "m": m, "friends": friends}
     if request.method == "POST":
         message = request.POST['message']
         chatb = ChatBox(sender=m, receiver=u, message=message)

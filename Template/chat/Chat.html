@@ -38,17 +38,21 @@
                                    <a class="btn btn-primary btn-block ms-new" href="#"><span class="glyphicon glyphicon-envelope"></span>&nbsp; New Message</a> 
  </div><hr/> 
             <div class="listview lv-user m-t-20">
+                {% for c in friends %}
+                {% if c.receiver.usr.id != request.user.id %}
           <div class="lv-item media"> 
         <div class="lv-avatar pull-left"> 
                                                 
-             <img src="/media/{{rec.profile_picture}}"/>
+             <img src="/media/{{c.receiver.profile_picture}}"/>
          </div>
         <div class="media-body"> 
             <div class="lv-title">
         </div>
-        <a  ForeColor="Black">Ali Ahmed</a>
+        <a href="{% url 'ChatApp:send' c.receiver.usr.username %}" ForeColor="Black">{{c.receiver.usr.first_name}} {{c.receiver.usr.last_name}}</a>
             </div>
             </div>
+            {% endif %}
+            {% endfor %}
 
             </div>
 </div>
@@ -110,9 +114,9 @@
             <form action="" id="form" method="post">
                                             {% csrf_token %}      
                                             <input type="text" value="{{user.username}}" id="myusername" hidden>                        
-                                     <input class="textarea" id="data" placeholder="Write messages..." name="message">
+                                     <input class="textarea" id="data" placeholder="Write messages..." name="message" required>
                                    <!-- <input type="submit" value="send"> -->
-                                         <button  class="button" type="submit" >
+                                         <button  class="button" id="btn"type="submit" >
                                             <span class="glyphicon glyphicon-send"></span>
                                             </button>
   
@@ -153,7 +157,8 @@
                chatHolder.append("<div class='lv-item media'><div class='lv-avatar pull-left'><img src="+img1 +" id='imgsrc'/></div><div class='media-body'><div class='ms-item'><label style='color: black;'>"+chatDataMsg.message+
                "</label></div><small class='ms-date'><span class='glyphicon glyphicon-time'></span>&nbsp;<label>"+chatDataMsg.time+
                "</label></small></div></div>");
-                // chatHolder.append("<p><img src="+ img1 +" height='20px' />" + chatDataMsg.message + " by " + chatDataMsg.username + "</p>");
+            
+                   // chatHolder.append("<p><img src="+ img1 +" height='20px' />" + chatDataMsg.message + " by " + chatDataMsg.username + "</p>");
             }
             else{
 
@@ -162,7 +167,7 @@
                "</label></small></div></div>");
             }
 
-            
+          
     }
     socket.onopen = function(e){
             console.log("open ", e);
@@ -187,8 +192,15 @@
 
 </script>
          <script  type="text/javascript"> 
-            window.onload = function () {
-                $("div.lv-body").scrollTop(10000);
-            };</script>
+                window.onload = function () {
+                $("div.lv-body").scrollTop(100000);
+            };
+             $('#btn').click(function(){
+                $("div.lv-body").animate({
+                    scrollTop:$("div.lv-body").offset().top + 10000},
+                10)
+             });
+        
+            </script>
 </body>
 </html>
