@@ -48,12 +48,28 @@
         <div class="media-body"> 
             <div class="lv-title">
         </div>
-        <a href="{% url 'ChatApp:send' c.receiver.usr.username %}" ForeColor="Black">{{c.receiver.usr.first_name}} {{c.receiver.usr.last_name}}</a>
+        <a href="{% url 'ChatApp:send' c.receiver.usr.username %}" style="color: black;">{{c.receiver.usr.first_name}} {{c.receiver.usr.last_name}}</a>
             </div>
             </div>
             {% endif %}
             {% endfor %}
-
+            <h5 class="q-title" ><b> {{frequest.count}} </b>Message Requests</h5>
+             
+            {% for freq in frequest %}
+            {% if freq.sender.usr.id != request.user.id and freq.receiver != freq.sender %}
+            <div class="lv-item media"> 
+                <div class="lv-avatar pull-left"> 
+                                                        
+                     <img src="/media/{{freq.sender.profile_picture}}"/>
+                 </div>
+                <div class="media-body"> 
+                    <div class="lv-title">
+                </div>
+                <a href="{% url 'ChatApp:send' freq.sender.usr.username %}" style="color: red;">{{freq.sender.usr.first_name}} {{freq.receiver.usr.last_name}}</a>
+                    </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
             </div>
 </div>
                 <div class="ms-body"> 
@@ -78,7 +94,7 @@
                         </div>
 
                                              
-                    <div class="lv-body" id="ms-scrollbar" style="overflow:scroll; overflow-x: hidden; height:520px;">
+                    <div class="lv-body"  style="overflow:scroll; overflow-x: hidden; height:520px;">
                         <div id="chat-items">
                         {% for chat in chat %}   
                         {% if request.user.id == chat.sender.usr.id and chat.receiver.usr == rec.usr %} 
@@ -109,7 +125,8 @@
             {%endfor%}   
         </div>
                 </div>
-                                                                 
+                           
+                
         <div class="lv-footer ms-reply">   
             <form action="" id="form" method="post">
                                             {% csrf_token %}      
@@ -132,6 +149,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
+function scrolltoBottom(){
+    window.scrollTo(0, document.body.scrollHeight);
+    $("div.lv-body").scrollTop(10000);
+    console.log(" done ")
+}
+
+      
     // console.log(window.location)
     var formData = $('#form');
     var loc = window.location;
@@ -167,7 +191,7 @@
                "</label></small></div></div>");
             }
 
-          
+          scrolltoBottom()
     }
     socket.onopen = function(e){
             console.log("open ", e);
@@ -193,13 +217,9 @@
 </script>
          <script  type="text/javascript"> 
                 window.onload = function () {
-                $("div.lv-body").scrollTop(100000);
+                $("div.lv-body").scrollTop(10000);
             };
-             $('#btn').click(function(){
-                $("div.lv-body").animate({
-                    scrollTop:$("div.lv-body").offset().top + 10000},
-                10)
-             });
+            
         
             </script>
 </body>

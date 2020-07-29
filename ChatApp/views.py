@@ -9,9 +9,10 @@ from django.db.models import Q
 def chatbox(request):
     m = UserInfo.objects.get(usr=request.user)
     friends = ChatBox.objects.filter(Q(sender=m)).distinct('receiver')
+    frequest = ChatBox.objects.filter(Q(receiver=m)).distinct('sender')
     for f in friends:
         print(f.receiver.usr.first_name, "name")
-    dic = {"friends": friends, "m": m}
+    dic = {"friends": friends, "m": m, "frequest": frequest}
     return render(request, "chat/Chat.html", dic)
 @csrf_exempt
 def send(request, username):
