@@ -14,9 +14,9 @@ def login(request):
                 u = UserInfo.objects.get(usr=request.user.id)
                 utype = u.usrtype
                 if utype== True:
-                    return HttpResponse("master page")
+                    return redirect("Appointment:arequests")
                 elif utype==False:
-                    return redirect("SocialCred:master")
+                    return redirect("arequests:status")
                 else:
                     return redirect("SocialCred:master")
 
