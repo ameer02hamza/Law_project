@@ -28,12 +28,14 @@
                         <strong><p>Expertise in {{lawyer.speciality}}</p></strong>
                         <strong><p>Contact No {{lawyer.pno}}</p></strong>
                         <p> {{lawyer.description}}</p>
+                        <a href="{% url 'Appointment:Appointform' lawyer.usr.id %}" class="btn btn-primary">Get Appointment</a>
+                        <br><br>
                         <!-- Meta -->
                         <!-- Core Features -->
                         <!-- Listings Btn Groups -->
                         <div class="listings-btn-groups">
-                            <a href="{% url 'Appointment:Appointform' lawyer.usr.id %}" class="btn south-btn">Get Appointment</a>
-                         
+                            <a href="{% url 'ChatApp:send' lawyer.usr.username %}" class="btn btn-primary"> Send a Message</a>
+                           
                         </div>
                     </div>
                 </div>

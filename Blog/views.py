@@ -1,9 +1,12 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, reverse
 from . models import AddBlog
 from django.core.paginator import Paginator
 from SocialCred.models import UserInfo
 from Appointment.models import notify
 from django.db.models import Q
+from django.views.generic import (UpdateView)
+from Questionaire.forms import QuesForm
+from django.shortcuts import get_object_or_404
 
 def sblog(request, id):
     b = AddBlog.objects.get(id=id)
@@ -52,3 +55,17 @@ def myblog(request):
     ntest =notify.objects.filter(Q(NfL=True, frm__lawyer=request.user) | Q(NfC=True, frm__client=request.user))
     dic = {"blog": page_obj, "law":lyr, "noti": ntest}
     return render(request, "Blogs&Questions/myblog.html", dic)
+
+
+def updateblog(request, id):
+    ublog = AddBlog.objects.get(id=id)
+
+    if request.method == "POST":
+        title = request.POST['title']
+        blog = request.POST['blog']
+        ublog.btitle= title
+        ublog.btext =blog
+        ublog.save()
+        return redirect("Blog:myblog")
+
+    return render(request, "Blogs&Questions/updateblog.html", {"blog": ublog})

@@ -35,6 +35,12 @@
                        </p>
                        <div class="clearfix"></div>
                         <p>{{obj.question}}</p>
+                        <p>
+                            {% if request.user == obj.uprof.usr %}
+                            <a href="{% url 'Questionaire:updateque' obj.id  %}" class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Edit</a>
+                            <!-- <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a> -->
+                            {% endif %}
+                        </p>
                         <div class="fb-like" data-href="http://127.0.0.1:8000/ques/det/{{obj.id}}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
                     </div>
                 </div>

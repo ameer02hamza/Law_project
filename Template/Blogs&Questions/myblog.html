@@ -17,7 +17,7 @@
             <div class="card bg-white">
                 <img class="card-img-top img-responsive" src="/media/{{b.bpic}}" alt="Card image">
                 <div class="post-meta">
-                    <p>By <a href="{%url 'lawyer:SLawyerlist' b.postedby.id %}"> {{b.postedby.first_name}}  {{b.postedby.last_name}}</a> | in <a href="#">Uncategorized</a> </p>
+                    <p>By <a href="{%url 'lawyer:SLawyerlist' b.postedby.id %}"> {{b.postedby.first_name}}  {{b.postedby.last_name}}</a> |   <a href="{% url 'Blog:updateblog' b.id %}" class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Edit</a></p>
                     <div class="fb-like" data-href="http://127.0.0.1:8000/blog/sblog/{{b.id}}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
 
                 </div>

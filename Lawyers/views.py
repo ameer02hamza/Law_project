@@ -45,7 +45,10 @@ def slisting(request, id):
         rtng = rating(ratings=ratng,review=review,RoL=inst, RC=request.user)
         rtng.save()
         return HttpResponseRedirect(reverse("lawyer:SLawyerlist", args=[id]))
-    dic = {"lawyer": lawyer, "law": lyr, "noti": ntest,"rating": trate, "rtng":rat}
+    paginator = Paginator(rat, 4)
+    pagenumber = request.GET.get('page')
+    page_obj = paginator.get_page(pagenumber)
+    dic = {"lawyer": lawyer, "law": lyr, "noti": ntest, "rating": trate, "rtng":page_obj}
     return render(request, "LawyerListing/singlelawyer.html", dic)
 
 

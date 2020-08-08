@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, reverse
 from django.views.generic import (CreateView,UpdateView,DetailView,
                                   ListView,DeleteView)
 from . models import Question
@@ -10,6 +10,7 @@ from Appointment.models import notify
 from django.db.models import Q, Case, When
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
+from Lawyers.models import rating
 
 
 class ArticleListView(ListView):
@@ -84,3 +85,18 @@ class AskQuestion(CreateView):
 #     def form_valid(self, form):
 #         print(form.cleaned_data)
 #         return super().form_valid(form)
+
+class updateque(UpdateView):
+    template_name = "Blogs&Questions/updatequest.html"
+    form_class = QuesForm
+    queryset = Question.objects.all()
+
+
+    def get_object(self):
+        id = self.kwargs.get("id")
+        return get_object_or_404(Question, id=id)
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+    def get_success_url(self):
+        return reverse("Questionaire:lists")

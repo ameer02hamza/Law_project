@@ -1,0 +1,46 @@
+{% extends "Master/Master.html"  %}
+{% block userprof %}
+{%include "Master/userprof.html" %}
+{% endblock %}
+{% block notify %}
+{% include "Master/notification.html" %}
+
+{% endblock %}
+
+{% block chatnoti %} <span class="badge pull-right">4</span> {% endblock %}
+{% block addblog %}
+
+    <section class="south-contact-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-heading">
+                        <h2>Update Question</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Contact Form Area -->
+                <div class="col-12 col-lg-8">
+                    <div class="contact-form">
+                        <form  method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{form.title}}
+                            </div>            
+                            <div class="form-group">
+                                {{form.question}}
+                            </div>
+                            <input type="submit" class="btn south-btn" value="ASK?">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {% endblock %}
+
+    
