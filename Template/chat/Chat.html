@@ -39,7 +39,7 @@
  </div><hr/> 
             <div class="listview lv-user m-t-20">
                 {% for c in friends %}
-                {% if c.receiver.usr.id != request.user.id %}
+                {% if c.receiver.usr.id != request.user.id  %}
           <div class="lv-item media"> 
         <div class="lv-avatar pull-left"> 
                                                 
@@ -56,7 +56,8 @@
             <h5 class="q-title" ><b> {{frequest.count}} </b>Message Requests</h5>
              
             {% for freq in frequest %}
-            {% if freq.sender.usr.id != request.user.id and freq.receiver != freq.sender %}
+            {% if freq.sender.usr.id != request.user.id %}
+            
             <div class="lv-item media"> 
                 <div class="lv-avatar pull-left"> 
                                                         
@@ -65,9 +66,18 @@
                 <div class="media-body"> 
                     <div class="lv-title">
                 </div>
-                <a href="{% url 'ChatApp:send' freq.sender.usr.username %}" style="color: red;">{{freq.sender.usr.first_name}} {{freq.receiver.usr.last_name}}</a>
+                <a href="{% url 'ChatApp:send' freq.sender.usr.username %}" style="color: red;">{{freq.sender.usr.first_name}} {{freq.sender.usr.last_name}}</a>
                     </div>
                     </div>
+                    {% endif %}
+                   
+                    {% endfor %}
+                    {% for freq in frequest %}
+                    {% if freq.sender.usr.id != request.user.id %}
+                    {% for c in friends %}
+                    <p>{{freq.sender.usr}} and {{c.sender.usr}}</p>
+                    {%endfor%}
+                    <!-- <p>outer</p> -->
                     {% endif %}
                     {% endfor %}
             </div>

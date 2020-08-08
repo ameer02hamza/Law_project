@@ -4,21 +4,11 @@
     <list default="true" id="71a757be-d2b2-40a5-bda4-12a25e5ebb95" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChatApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ChatApp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/Appointments/Appointmentform.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/Appointments/Appointmentform.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/Appointments/ConfimAppointment.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/Appointments/ConfimAppointment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/Appointments/appointstatus.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/Appointments/appointstatus.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/Blogs&amp;Questions/addblog.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/Blogs&amp;Questions/addblog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/Blogs&amp;Questions/askquest.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/Blogs&amp;Questions/askquest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/Blogs&amp;Questions/blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/Blogs&amp;Questions/blog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/Blogs&amp;Questions/blogdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/Blogs&amp;Questions/blogdetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/Blogs&amp;Questions/myblog.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/Blogs&amp;Questions/myblog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/Blogs&amp;Questions/quedet.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/Blogs&amp;Questions/quedet.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/LawyerListing/lawyerlistings.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/LawyerListing/lawyerlistings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Questionaire/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Questionaire/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Search/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Search/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Template/LawyerListing/searchlaw.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/LawyerListing/searchlaw.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/LawyerListing/singlelawyer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/LawyerListing/singlelawyer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template/Master/Master.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/Master/Master.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Template/chat/Chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/chat/Chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Template/searchmodule.html" beforeDir="false" afterPath="$PROJECT_DIR$/Template/searchmodule.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,10 +24,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ChatApp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+            <state relative-caret-position="45">
+              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SocialCred/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="49" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="49" />
               <folding>
-                <element signature="e#0#28#0" expanded="true" />
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Questionaire/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="74" selection-start-line="74" selection-start-column="2" selection-end-line="85" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -46,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ChatApp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="14" column="48" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="48" />
+            <state relative-caret-position="150">
+              <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
               <folding>
                 <element signature="e#0#53#0" expanded="true" />
               </folding>
@@ -56,22 +67,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChatApp/urls.py">
+        <entry file="file://$PROJECT_DIR$/Search/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="19" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="19" />
+            <state relative-caret-position="420">
+              <caret line="51" column="3" selection-start-line="51" selection-start-column="3" selection-end-line="51" selection-end-column="3" />
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#0#45#0" expanded="true" />
+                <element signature="e#379#1012#0" />
+                <element signature="e#1037#1372#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -158,7 +162,6 @@
         <option value="$PROJECT_DIR$/Appointment/models.py" />
         <option value="$PROJECT_DIR$/Lawyers/models.py" />
         <option value="$PROJECT_DIR$/SocialCred/models.py" />
-        <option value="$PROJECT_DIR$/Search/views.py" />
         <option value="$PROJECT_DIR$/Lawyers/urls.py" />
         <option value="$PROJECT_DIR$/Lawyers/admin.py" />
         <option value="$PROJECT_DIR$/Template/Blogs&amp;Questions/addquest.html" />
@@ -169,8 +172,6 @@
         <option value="$PROJECT_DIR$/Questionaire/urls.py" />
         <option value="$PROJECT_DIR$/Questionaire/models.py" />
         <option value="$PROJECT_DIR$/Questionaire/forms.py" />
-        <option value="$PROJECT_DIR$/Questionaire/views.py" />
-        <option value="$PROJECT_DIR$/SocialCred/views.py" />
         <option value="$PROJECT_DIR$/Lawyers/views.py" />
         <option value="$PROJECT_DIR$/Appointment/urls.py" />
         <option value="$PROJECT_DIR$/Appointment/views.py" />
@@ -188,6 +189,9 @@
         <option value="$PROJECT_DIR$/ChatApp/urls.py" />
         <option value="$PROJECT_DIR$/ChatApp/views.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/Search/views.py" />
+        <option value="$PROJECT_DIR$/SocialCred/views.py" />
+        <option value="$PROJECT_DIR$/Questionaire/views.py" />
       </list>
     </option>
   </component>
@@ -203,7 +207,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -211,10 +214,22 @@
               <item name="LegalAid" type="b2602c69:ProjectViewProjectNode" />
               <item name="LegalAid" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="LegalAid" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LegalAid" type="462c0819:PsiDirectoryNode" />
+              <item name="Template" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LegalAid" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LegalAid" type="462c0819:PsiDirectoryNode" />
+              <item name="Template" type="462c0819:PsiDirectoryNode" />
+              <item name="Credentials" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -270,7 +285,7 @@
     <frame x="-5" y="17" width="1376" height="756" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.495671" visible="true" weight="0.15955056" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.495671" visible="true" weight="0.15955056" />
       <window_info id="Structure" order="1" show_stripe_button="false" sideWeight="0.504329" side_tool="true" weight="0.2494382" />
       <window_info id="Favorites" order="2" show_stripe_button="false" sideWeight="0.504329" side_tool="true" weight="0.2494382" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -288,25 +303,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49761903" visible="true" weight="0.24944155" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" sideWeight="0.50238097" side_tool="true" weight="0.24944155" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3290735" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -329,13 +325,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Template/Blogs&amp;Questions/askquest.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SocialCred/migrations/0007_auto_20200511_1327.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -408,16 +397,6 @@
           <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SocialCred/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="49" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -523,16 +502,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SocialCred/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="52" lean-forward="true" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Appointment/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -560,26 +529,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Search/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-375">
-          <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Questionaire/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="26" column="50" lean-forward="true" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LegalAid/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="488">
@@ -587,12 +536,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChatApp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ChatApp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        <state relative-caret-position="45">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Template/Credentials/signin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChatApp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="51" column="3" selection-start-line="51" selection-start-column="3" selection-end-line="51" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+            <element signature="e#379#1012#0" />
+            <element signature="e#1037#1372#0" />
           </folding>
         </state>
       </provider>
@@ -627,30 +619,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChatApp/urls.py">
+    <entry file="file://$PROJECT_DIR$/SocialCred/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="19" />
+        <state relative-caret-position="90">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#59#0" expanded="true" />
+            <element signature="e#255#1020#0" />
+            <element signature="e#1046#2777#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChatApp/views.py">
+    <entry file="file://$PROJECT_DIR$/SocialCred/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="14" column="48" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="48" />
+        <state relative-caret-position="105">
+          <caret line="7" column="49" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="49" />
           <folding>
-            <element signature="e#0#53#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/Questionaire/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        <state relative-caret-position="255">
+          <caret line="74" selection-start-line="74" selection-start-column="2" selection-end-line="85" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

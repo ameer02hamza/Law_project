@@ -34,18 +34,24 @@ def blog(request):
     return render(request, "searchblog.html")
 
 def searchlaw(request):
-    lawtype = str(request.GET.get('type'))
-    loc = str(request.GET.get('loc'))
+    lawtype = str(request.GET.get('type', None))
+    loc = str(request.GET.get('loc', None))
+    context = {}
+
+    type = request.GET.get('type', '')
+    loc = request.GET.get('loc', '')
+
     lawyer = UserInfo.objects.filter(Q(speciality__icontains=lawtype.upper(), address__icontains=loc.upper()) |
                                      Q(usr__first_name__icontains=lawtype), Q(address__icontains=loc.upper()))
     print(lawyer)
-    paginator = Paginator(lawyer, 2)
+    paginator = Paginator(lawyer, 1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     us = request.user
     lyr = UserInfo.objects.all()
+   
 
-    dic = {"pageobj": page_obj, "law": lyr, "user": us}
+    dic = {"pageobj": page_obj, "law": lyr, "user": us, "type": type, "loc":loc}
 
     return render(request, "LawyerListing/searchlaw.html", dic)
 

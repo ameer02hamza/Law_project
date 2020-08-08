@@ -84,21 +84,21 @@
                         </div>
                     </div>
                 </div>
-              
-                {% endfor%}
+                {% endfor%}    
+                <p></p>
             </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     {% if pageobj.has_previous %}
                     <li >
-                        <a  href="?page={{ pageobj.previous_page_number }}">←</a> 
-                        <a  href="?page={{ pageobj.previous_page_number }}">{{ pageobj.previous_page_number }}</a></li>  
+                        <a  href="?{% if type %}type={{type}}{% if loc %}&loc={{loc}}{% endif %}{% endif %}&page={{pageobj.previous_page_number}}">←</a> 
+                        <a  href="?{% if type %}type={{type}}{% if loc %}&loc={{loc}}{% endif %}{% endif %}&page={{pageobj.previous_page_number}}">{{ pageobj.previous_page_number }}</a></li>  
                     {% endif %}
                     <li class="active" ><a href="#">{{ pageobj.number }}</a></li>
                     {% if pageobj.has_next %}
                     <li >                       
-                        <a  href="?page={{ pageobj.next_page_number }}">{{ pageobj.next_page_number }}</a>  
-                        <a  href="?page={{ pageobj.next_page_number }}">→</a>                 
+                        <a  href="?{% if type %}type={{type}}{% if loc %}&loc={{loc}}{% endif %}{% endif %}&page={{pageobj.next_page_number}}">{{ pageobj.next_page_number }}</a>  
+                        <a  href="?{% if type %}type={{type}}{% if loc %}&loc={{loc}}{% endif %}{% endif %}&page={{pageobj.next_page_number}}">→</a>                 
                     </li>
                     {% endif %} 
 
