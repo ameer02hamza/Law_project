@@ -41,7 +41,6 @@
                 
                 {% for c in friends %}
                 
-                {% if c.receiver.usr.id != request.user.id  %}
           <div class="lv-item media"> 
         <div class="lv-avatar pull-left"> 
                                                 
@@ -53,7 +52,6 @@
         <a href="{% url 'ChatApp:send' c.receiver.usr.username %}" style="color: black;">{{c.receiver.usr.first_name}} {{c.receiver.usr.last_name}}</a>
             </div>
             </div>
-            {% endif %}
             {% endfor %}
             
                     </div>

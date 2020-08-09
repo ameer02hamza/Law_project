@@ -4,4 +4,5 @@ app_name = 'lawyer'
 urlpatterns = [
 path("list", views.listing, name="Lawyerlist"),
 path(r"slaw/<int:id>", views.slisting, name="SLawyerlist"),
+path(r"rating/<int:id>", views.urat, name="ratingu")
 ]

@@ -16,7 +16,7 @@ def login(request):
                 if utype== True:
                     return redirect("Appointment:arequests")
                 elif utype==False:
-                    return redirect("arequests:status")
+                    return redirect("Appointment:status")
                 else:
                     return redirect("SocialCred:master")
 

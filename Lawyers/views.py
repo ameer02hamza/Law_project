@@ -48,8 +48,22 @@ def slisting(request, id):
     paginator = Paginator(rat, 4)
     pagenumber = request.GET.get('page')
     page_obj = paginator.get_page(pagenumber)
-    dic = {"lawyer": lawyer, "law": lyr, "noti": ntest, "rating": trate, "rtng":page_obj}
+    r = rating.objects.filter(RoL=id, RC=request.user)
+    dic = {"lawyer": lawyer, "law": lyr, "noti": ntest, "rating": trate, "rtng":page_obj, "r": r}
     return render(request, "LawyerListing/singlelawyer.html", dic)
+
+def urat(request, id):
+    rat = rating.objects.get(id=id)
+    if request.method == "POST":
+        r = request.POST['check']
+        rev = request.POST['review']
+        rat.ratings = r
+        rat.review = rev
+        return HttpResponseRedirect(reverse("lawyer:SLawyerlist",args=[rat.RoL.id]))
+    return render(request, "Master/editrating.html", {"rat": rat})    
+            
+
+        
 
 
 

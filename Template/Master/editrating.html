@@ -43,14 +43,14 @@
   </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rating </title>
 </head>
 <body>
   <form action="" id=form method="post">
     {% csrf_token %}
-    {% if r.count <= 0 %}
-  <Textarea id="review" name="review" cols="50" rows="6" hidden></Textarea>
-  <input type="submit" id="btn" class=" btn-primary" value="Submit Review" hidden="hidden">
+
+  <Textarea id="review" name="review" cols="50" rows="6">{{rat.review}}</Textarea>
+  <input type="submit" id="btn" class="btn-primary" style="border: 1px outset blue; background-color: rgb(95, 95, 228);color: black; height: 30px; width: 130px; cursor: pointer;" value=" Submit Review" >
     <fieldset class="rating">
       
         <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -66,61 +66,8 @@
         <br><input type="text" id="check" name="check" hidden="hidden">
         <br>
       </fieldset> <br>
-      {% endif %}
     </form>
-      {% for i in rtng %}
-      <div class="container">
-        <h5 class="text-center">{{rtng.count}} people rated this lawyer</h5>
-        
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-2">
-                      {% for pro in law %}
-                      {% if pro.usr.id == i.RC.id %}
-                        <img src="/media/{{pro.profile_picture}}" class="img-circle"/>
-                        {% endif %}
-                        {% endfor %}
-                        <p class="text-secondary text-center">15 Minutes Ago</p>
-                    </div>
-                    <div class="col-md-10">
-                        <p>
-                            <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>{{i.RC.first_name}} {{i.RC.last_name}}</strong></a>
-                            <span class="float-right"><i class="text-warning fa fa-star">{{i.ratings}}</i></span>
-                              
-      
-                       </p>
-                       <div class="clearfix"></div>
-                        <p>{{i.review}}</p>
-                        <p>{% if request.user == i.RC %}
-                            <a href="{% url 'lawyer:ratingu' i.id %}" class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Edit</a>
-                            <!-- <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a> -->
-                            {% endif %}
-                       </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      {% endfor %}
-      <nav aria-label="Page navigation">
-        <ul class="pagination">
-            {% if rtng.has_previous %}
-            <li >
-                <a  href="?page={{ rtng.previous_page_number }}">←</a> 
-                <a  href="?page={{ rtng.previous_page_number }}">{{ rtng.previous_page_number }}</a></li>  
-            {% endif %}
-            <li class="active" ><a href="#">{{ rtng.number }}</a></li>
-            {% if rtng.has_next %}
-            <li >                       
-                <a  href="?page={{ rtng.next_page_number }}">{{ rtng.next_page_number }}</a>  
-                <a  href="?page={{ rtng.next_page_number }}">→</a>                 
-            </li>
-            {% endif %} 
-
-
-        </ul>
-    </nav>
+    
     
 </body>
 <script>
